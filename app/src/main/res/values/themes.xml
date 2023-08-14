@@ -2,8 +2,15 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Agenda" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/green_light</item>
+        <item name="colorPrimaryVariant">@color/green_dark</item>
     </style>
 
     <style name="Theme.Agenda" parent="Base.Theme.Agenda" />
+
+    <style name="BottomNavigation">
+        <item name="android:background">@color/green_dark</item>
+        <item name="itemIconTint">@color/green_light_2</item>
+        <item name="itemTextColor">@color/green_light_2</item>
+    </style>
 </resources>

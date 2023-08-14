@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".NuevoActivity">
-
+    android:layout_height="match_parent"
+    tools:context=".verActivity">
 
     <FrameLayout
         android:id="@+id/frame_container"
@@ -55,36 +53,55 @@
                 android:layout_marginStart="32sp"
                 android:layout_marginTop="24dp"
                 android:layout_weight="1"
-                android:text="@string/titulo_agregar"
+                android:text="Información Contacto"
                 android:textColor="@color/green_normal"
-                android:textSize="30sp"
+                android:textSize="22dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/viewNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hint_nombre" />
 
             <EditText
                 android:id="@+id/txtNombre"
                 android:layout_width="304dp"
                 android:layout_height="61dp"
                 android:ems="10"
-                android:hint="@string/hint_nombre"
                 android:inputType="text" />
+
+            <TextView
+                android:id="@+id/viewTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hint_telefono" />
 
             <EditText
                 android:id="@+id/txtTelefono"
                 android:layout_width="304dp"
                 android:layout_height="61dp"
                 android:ems="10"
-                android:hint="@string/hint_telefono"
                 android:inputType="text" />
+
+            <TextView
+                android:id="@+id/viewCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hint_correo_eletronico" />
 
             <EditText
                 android:id="@+id/txtCorreoElectronico"
                 android:layout_width="304dp"
                 android:layout_height="57dp"
                 android:ems="10"
-                android:hint="@string/hint_correo_eletronico"
                 android:inputType="text" />
 
             <Button
@@ -95,6 +112,5 @@
                 android:text="@string/btn_guarda" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>

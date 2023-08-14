@@ -25,9 +25,9 @@
 
             <TextView
                 android:id="@+id/viewNombre"
-                android:layout_width="296dp"
-                android:layout_height="49dp"
-                android:textSize="28sp" />
+                android:layout_width="299dp"
+                android:layout_height="wrap_content"
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/viewTelefono"

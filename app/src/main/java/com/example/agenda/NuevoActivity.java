@@ -1,14 +1,18 @@
 package com.example.agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.agenda.db.DbContactos;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NuevoActivity extends AppCompatActivity {
 
@@ -25,6 +29,22 @@ public class NuevoActivity extends AppCompatActivity {
         txtCorreoElectronico = findViewById(R.id.txtCorreoElectronico);
         btnGuarda = findViewById(R.id.btnGuarda);
 
+
+        BottomNavigationView bottomNavigationViewNuevo = findViewById(R.id.botton_navigation_agregar);
+
+        bottomNavigationViewNuevo.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.menuInicio) {
+                    startActivity(new Intent(NuevoActivity.this, MainActivity.class));
+                    return true;
+                } else if (item.getItemId() == R.id.menuAgregar) {
+                    return true;
+                }
+                return false;
+            }
+        });
+
         btnGuarda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,6 +53,9 @@ public class NuevoActivity extends AppCompatActivity {
                 if (id > 0) {
                     Toast.makeText(NuevoActivity.this, "REGISTRO GUARDADO", Toast.LENGTH_LONG).show();
                     limpiar();
+
+                    Intent intent = new Intent(NuevoActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }else {
                     Toast.makeText(NuevoActivity.this, "ERROR AL GUARDAR REGISTRO", Toast.LENGTH_LONG).show();
                 }

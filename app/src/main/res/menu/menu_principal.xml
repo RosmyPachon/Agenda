@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuNuevo"
-        android:title="@string/menu_nuevo" />
+        android:id="@+id/menuInicio"
+        android:icon="@drawable/user"
+        android:title="Contactos"/>
+
+    <item
+        android:id="@+id/menuAgregar"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="Nuevo Conctato"/>
 </menu>

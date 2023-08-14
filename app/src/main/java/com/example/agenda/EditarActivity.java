@@ -1,8 +1,5 @@
 package com.example.agenda;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -10,17 +7,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.agenda.db.DbContactos;
 import com.example.agenda.entidades.Contactos;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class verActivity extends AppCompatActivity {
+public class EditarActivity extends AppCompatActivity {
 
     EditText txtNombre, txtTelefono, txtCorreo;
     Button btnGuarda;
     Contactos contacto;
+
     FloatingActionButton editarContacto;
     int id = 0;
 
@@ -37,7 +39,7 @@ public class verActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null){
-                id = 0; // Asignar un valor numérico por defecto
+                id = Integer.parseInt(null);
             } else {
                 id = extras.getInt("ID");
             }
@@ -45,42 +47,38 @@ public class verActivity extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-
-        DbContactos dbContactos = new DbContactos(verActivity.this);
+        DbContactos dbContactos = new DbContactos(EditarActivity.this);
         contacto = dbContactos.verContacto(id);
 
         if (contacto != null){
             txtNombre.setText(contacto.getNombre());
             txtTelefono.setText(contacto.getTelefono());
             txtCorreo.setText(contacto.getCorreo_electronico());
-            btnGuarda.setVisibility(View.INVISIBLE);
-            txtNombre.setInputType(InputType.TYPE_NULL);
-            txtTelefono.setInputType(InputType.TYPE_NULL);
-            txtCorreo.setInputType(InputType.TYPE_NULL);
+            editarContacto.setVisibility(View.INVISIBLE);
         }
 
-        editarContacto.setOnClickListener(new View.OnClickListener() {
+        btnGuarda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(verActivity.this, EditarActivity.class);
-                intent.putExtra("ID",id);
-                startActivity(intent);
+                if (!txtNombre.getText().toString().equals("") && !txtTelefono.getText().toString().equals("") && !txtCorreo.getText().toString().equals("")) {
+                    boolean correcto = dbContactos.editarContactos(id, txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreo.getText().toString());
+
+                    if (correcto) {
+                        Toast.makeText(EditarActivity.this, "REGISTRO ACTUALIZADO", Toast.LENGTH_LONG).show();
+                        verRegistro();
+                    } else {
+                        Toast.makeText(EditarActivity.this, "ERROR AL ACTUALIZAR", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(EditarActivity.this, "SE DEBEN LLENAR TODOS LOS CAMPOS", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-        BottomNavigationView bottomNavigationViewNuevo = findViewById(R.id.botton_navigation_agregar);
-        bottomNavigationViewNuevo.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.menuInicio) {
-                    startActivity(new Intent(verActivity.this, MainActivity.class));
-                    return true;
-                } else if (item.getItemId() == R.id.menuAgregar) {
-                    startActivity(new Intent(verActivity.this, NuevoActivity.class));
-                    return true;
-                }
-                return false;
-            }
-        });
+    }
+    private void verRegistro(){
+        Intent intent =new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
+

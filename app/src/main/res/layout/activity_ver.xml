@@ -24,8 +24,6 @@
         app:labelVisibilityMode="labeled"
         style="@style/BottomNavigation"/>
 
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="360dp"
         android:layout_height="wrap_content"
@@ -46,20 +44,39 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <TextView
-                android:id="@+id/tituloPrincipal"
-                android:layout_width="wrap_content"
-                android:layout_height="53dp"
-                android:layout_marginStart="32sp"
-                android:layout_marginTop="24dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Información Contacto"
-                android:textColor="@color/green_normal"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tituloPrincipal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="2sp"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1"
+                    android:text="Información Contacto"
+                    android:textColor="@color/green_normal"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/editarContacto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginEnd="10sp"
+                    android:background="@drawable/btn_editar"
+                    android:clickable="true"
+                    app:srcCompat="@drawable/editar" />
+
+
+            </LinearLayout>
 
 
             <TextView
@@ -109,7 +126,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_guarda" />
+                android:text="@string/btn_guarda"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

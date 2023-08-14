@@ -4,25 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D1DCDB"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="false"/>
+        android:layout_alignParentTop="false" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/botton_navigation"
+        style="@style/BottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:elevation="8dp"
-        app:menu="@menu/menu_principal"
         app:labelVisibilityMode="labeled"
-        style="@style/BottomNavigation"/>
+        app:menu="@menu/menu_principal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,9 +33,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginStart="2sp"
-            android:layout_marginEnd="32sp">
+            android:layout_marginEnd="32sp"
+            android:orientation="horizontal">
 
 
             <TextView

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class DbContactos extends DbHelper {
 
+    public static final String TABLE_CONTACTO = "t_contactos";
+
     Context context;
 
     public DbContactos(@Nullable Context context) {
@@ -37,6 +39,25 @@ public class DbContactos extends DbHelper {
             ex.toString();
         }
          return id;
+    }
+
+    public boolean editarContactos(int id, String nombre, String telefono, String correo_electronico){
+
+        boolean correcto = false;
+
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try{
+            db.execSQL("UPDATE " + TABLE_CONTACTOS + " SET nombre = '" + nombre + "', telefono = '" + telefono + "', correo_electronico = '" + correo_electronico + "' WHERE id = '" + id + "'");
+            correcto = true;
+        } catch (Exception ex){
+            ex.toString();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+        return correcto;
     }
     public ArrayList<Contactos> mostrarContactos(){
         DbHelper dbHelper = new DbHelper(context);
@@ -64,13 +85,14 @@ public class DbContactos extends DbHelper {
     }
 
     public Contactos verContacto(int id){
+
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         Contactos contacto = null;
         Cursor cursorContactos = null;
 
-        cursorContactos = db.rawQuery("SELECT * FROM " + TABLE_CONTACTOS + " WHERE id = ? LIMIT 1",null);
+        cursorContactos = db.rawQuery("SELECT * FROM " + TABLE_CONTACTO + " WHERE id= "+ id + " LIMIT 1",null );
 
         if (cursorContactos.moveToFirst()){
                 contacto = new Contactos();

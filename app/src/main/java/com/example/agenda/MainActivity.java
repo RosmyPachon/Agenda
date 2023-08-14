@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         ListaContactosAdapter adapter = new ListaContactosAdapter(dbContactos.mostrarContactos());
         listaContactos.setAdapter(adapter);
 
+
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.botton_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -83,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_principal,menu);
         return true;
     }
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        if (item.getItemId() ==R.id.menuNuevo ) {
-//            nuevoRegistro();
-//            return true;
-//        } else {
-//            return super.onOptionsItemSelected(item);
-//        }
-//    }
+  public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() ==R.id.menuInicio ) {
+          nuevoRegistro();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void nuevoRegistro(){
         Intent intent = new Intent(this, NuevoActivity.class);

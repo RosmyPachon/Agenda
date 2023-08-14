@@ -46,7 +46,6 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
         return listaContactos.size();
     }
 
-
     public class ContactoViewHolder extends RecyclerView.ViewHolder {
         TextView viewNombre, viewTelefono, viewCorreo;
         public ContactoViewHolder(@NonNull View itemView) {
@@ -59,9 +58,10 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
                 @Override
                 public void onClick(View view) {
                     Context context = viewNombre.getContext();
-                    Intent intent = new Intent(view.getContext(), verActivity.class);
+
+                    Intent intent = new Intent(context, verActivity.class);
                     intent.putExtra("ID", listaContactos.get(getAdapterPosition()).getId());
-                    view.getContext().startActivity(intent);
+                    context.startActivity(intent);
                 }
             });
         }
